@@ -111,7 +111,8 @@ export default function Home() {
 
     // Filter limits
     const filtered = mapped.filter(item => {
-      if (userLocation && item.time > maxTime) return false;
+      // 999 represents 'Any Time/Infinite', so don't filter if maxTime >= 999
+      if (userLocation && maxTime < 999 && item.time > maxTime) return false;
       const price = fuelType === '95' ? item.station.price95 : item.station.priceGasoilA;
       if (!price || price <= 0 || price > maxPrice) return false;
       return true;

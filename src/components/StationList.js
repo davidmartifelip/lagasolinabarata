@@ -24,8 +24,8 @@ export default function StationList({ stations, fuelType, setFuelType, maxTime, 
   return (
     <>
       {/* Mobile Top Filters */}
-      <div className="absolute top-4 left-4 right-4 z-[1000] md:hidden pointer-events-none">
-        <div className="glass bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-2xl p-3 flex flex-col gap-2.5 shadow-xl pointer-events-auto border border-white/40 dark:border-slate-700">
+      <div className="absolute top-4 left-2 right-2 z-[2000] md:hidden pointer-events-none">
+        <div className="glass bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl p-3 flex flex-col gap-2.5 shadow-2xl pointer-events-auto border border-white/50 dark:border-slate-700">
           
           {/* Row 1: Fuel & Time */}
           <div className="flex items-center gap-2 w-full">
@@ -147,9 +147,21 @@ export default function StationList({ stations, fuelType, setFuelType, maxTime, 
           </div>
 
           {/* Mobile List Short Header */}
-          <div className="flex md:hidden justify-between items-center px-4 pb-2 shrink-0 border-b border-slate-200 dark:border-slate-700/50">
-             <h2 className="font-extrabold text-slate-800 dark:text-slate-100 text-sm">Resultados en zona</h2>
-             <span className="text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300 px-2 py-0.5 rounded shadow-sm">{stations.length}</span>
+          <div 
+            onClick={() => setSheetExpanded(!sheetExpanded)}
+            className="flex md:hidden justify-between items-center px-4 py-3 shrink-0 border-b border-slate-200 dark:border-slate-700/50 cursor-pointer active:bg-slate-100 dark:active:bg-slate-800 transition-colors"
+          >
+             <div className="flex items-center gap-2">
+               <h2 className="font-extrabold text-slate-800 dark:text-slate-100 text-base">Resultados en zona</h2>
+               <span className="text-[11px] font-bold bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300 px-2 py-0.5 rounded shadow-sm">{stations.length}</span>
+             </div>
+             <button className="p-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 shadow-sm">
+                {sheetExpanded ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                )}
+             </button>
           </div>
 
           <div className="overflow-y-auto p-4 flex flex-col gap-2.5 flex-1 custom-scrollbar">
