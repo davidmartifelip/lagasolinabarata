@@ -25,3 +25,28 @@ export function calculateDistance(lat1, lon1, lat2, lon2) {
 
   return EARTH_RADIUS_KM * c;
 }
+
+/**
+ * Estimates driving time based on linear distance, factoring in road detour and traffic speeds.
+ * @param {number} linearDistanceKm - The linear distance in kilometers
+ * @returns {number} Estimated time in minutes
+ */
+export function estimateDrivingTime(linearDistanceKm) {
+  if (linearDistanceKm <= 0) return 0;
+  
+  const roadDistanceKm = linearDistanceKm * 1.35;
+  let avgSpeedKmh = 30;
+  
+  if (linearDistanceKm < 2) {
+    avgSpeedKmh = 20; 
+  } else if (linearDistanceKm < 5) {
+    avgSpeedKmh = 25;
+  } else if (linearDistanceKm < 15) {
+    avgSpeedKmh = 40;
+  } else {
+    avgSpeedKmh = 70;
+  }
+  
+  const timeMinutes = (roadDistanceKm / avgSpeedKmh) * 60;
+  return timeMinutes + 1.5;
+}

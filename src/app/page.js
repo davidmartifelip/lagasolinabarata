@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { Loader2 } from 'lucide-react';
 import { parseStationsData } from '@/utils/parsers';
-import { calculateDistance } from '@/utils/distance';
+import { calculateDistance, estimateDrivingTime } from '@/utils/distance';
 
 import StationList from '@/components/StationList';
 
@@ -104,7 +104,7 @@ export default function Home() {
           userLocation.lat, userLocation.lon,
           station.lat, station.lon
         );
-        time = distance * 1.2;
+        time = estimateDrivingTime(distance);
       }
       return { station, time };
     });
