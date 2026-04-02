@@ -4,7 +4,6 @@ const API_URL = 'https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburante
 
 // We mark this API route as dynamic to avoid static caching at build time
 export const dynamic = 'force-dynamic';
-export const runtime = 'edge';
 
 export async function GET() {
   try {
