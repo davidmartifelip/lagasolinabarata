@@ -76,16 +76,16 @@ export default function StationList({ stations, fuelType, setFuelType, maxTime, 
 
       {/* Bottom Sheet wrapper (Mobile 35% height / Desktop sidebar) */}
       <div className={`absolute bottom-0 left-0 right-0 md:top-4 md:bottom-auto md:w-[420px] md:left-4 z-[1000] pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]`}>
-        <div className={`${sheetExpanded ? 'h-[70vh]' : 'h-[35vh]'} md:h-[90vh] lg:h-[95vh] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl border-t md:border border-slate-200 dark:border-slate-700 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:shadow-2xl rounded-t-3xl md:rounded-3xl overflow-hidden pointer-events-auto flex flex-col transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]`}>
+        <div className={`${sheetExpanded ? 'h-[calc(100dvh-140px)]' : 'h-[35dvh]'} md:h-[90vh] lg:h-[95vh] bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl border-t md:border border-slate-200 dark:border-slate-700 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:shadow-2xl rounded-t-3xl md:rounded-3xl overflow-hidden pointer-events-auto flex flex-col transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]`}>
           
           {/* Mobile Handle */}
           <div 
-            className="w-full h-6 flex items-center justify-center md:hidden shrink-0 cursor-grab active:cursor-grabbing hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+            className="w-full h-8 flex items-center justify-center md:hidden shrink-0 cursor-grab active:cursor-grabbing hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={() => setSheetExpanded(!sheetExpanded)}
           >
-            <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
+            <div className="w-12 h-1.5 bg-slate-300 dark:bg-slate-600 rounded-full mt-1"></div>
           </div>
 
           {/* Desktop Filter Header (Hidden on Mobile) */}
@@ -155,16 +155,16 @@ export default function StationList({ stations, fuelType, setFuelType, maxTime, 
                <h2 className="font-extrabold text-slate-800 dark:text-slate-100 text-base">Resultados en zona</h2>
                <span className="text-[11px] font-bold bg-green-100 text-green-700 dark:bg-green-900/50 dark:text-green-300 px-2 py-0.5 rounded shadow-sm">{stations.length}</span>
              </div>
-             <button className="p-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 shadow-sm">
+             <button className="p-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 shadow-sm transition-transform">
                 {sheetExpanded ? (
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                ) : (
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
                 )}
              </button>
           </div>
 
-          <div className="overflow-y-auto p-4 flex flex-col gap-2.5 flex-1 custom-scrollbar">
+          <div className="overflow-y-auto p-4 flex flex-col gap-2.5 flex-1 custom-scrollbar overscroll-contain">
             {stations.length > 0 ? stations.map((stationData, index) => (
               <StationCard 
                 key={stationData.station.id} 

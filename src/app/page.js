@@ -133,7 +133,7 @@ export default function Home() {
   }, [allStations, userLocation, maxTime, maxPrice, fuelType, mapBounds, selectedStationId]);
 
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-slate-50 dark:bg-slate-900">
+    <main className="fixed inset-0 w-full h-[100dvh] overflow-hidden bg-slate-50 dark:bg-slate-900 overscroll-none">
       
       <div className="absolute inset-0 z-0">
         <Map 
